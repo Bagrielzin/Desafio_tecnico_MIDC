@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from datetime import date, datetime
 from typing import Optional
 
@@ -14,8 +14,7 @@ class EmployeeOut(BaseModel):
     name: str
     department: str
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 class RecordOut(BaseModel):
     id: int
@@ -25,5 +24,4 @@ class RecordOut(BaseModel):
     created_at: datetime
     employee: EmployeeOut
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
