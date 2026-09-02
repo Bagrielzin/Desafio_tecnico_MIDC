@@ -81,3 +81,7 @@ def get_summary(db: Session = Depends(database.get_db)):
         }
     except SQLAlchemyError:
         raise HTTPException(status_code=500, detail="Erro ao gerar o resumo.")
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok", "message": "API rodando perfeitamente"}
