@@ -7,8 +7,7 @@ import { ApiService } from './api.service';
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   registroForm: FormGroup;
@@ -30,14 +29,14 @@ export class AppComponent {
     if (this.registroForm.valid) {
       this.isSubmitting = true;
       this.apiService.enviarRegistro(this.registroForm.value).subscribe({
-        next: (res) => {
+        next: () => {
           this.mensagem = 'Registro salvo com sucesso!';
           this.erro = false;
           this.registroForm.reset({ deliveries: 0 });
           this.isSubmitting = false;
         },
-        error: (err) => {
-          this.mensagem = 'Erro ao salvar o registro. Tente novamente.';
+        error: () => {
+          this.mensagem = 'Erro ao salvar. Verifique a API.';
           this.erro = true;
           this.isSubmitting = false;
         }
